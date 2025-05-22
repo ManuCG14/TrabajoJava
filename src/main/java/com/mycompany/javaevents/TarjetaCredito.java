@@ -1,45 +1,44 @@
 package com.mycompany.javaevents;
 
-public class TarjetaCredito {
-    
-    private String nombre;
-    private String numero16;
-    private String fecha_caducidad;
+import java.io.Serializable;
 
-    public TarjetaCredito(String nombre, String numero16, String fecha_caducidad) {
-        this.nombre = nombre;
-        this.numero16 = numero16;
-        this.fecha_caducidad = fecha_caducidad;
-    }
-    
-    public String getFecha_caducidad() {
-        return fecha_caducidad;
+public class TarjetaCredito implements Serializable {
+    private String titular;
+    private String numero;
+    private String fechaCaducidad;
+
+    public TarjetaCredito(String titular, String numero, String fechaCaducidad) {
+        this.titular = titular;
+        this.numero = numero;
+        this.fechaCaducidad = fechaCaducidad;
     }
 
-    public void setFecha_caducidad(String fecha_caducidad) {
-        this.fecha_caducidad = fecha_caducidad;
+    public String getTitular() {
+        return titular;
     }
 
-
-    public String getNumero16() {
-        return numero16;
+    public void setTitular(String titular) {
+        this.titular = titular;
     }
 
-    public void setNumero16(String numero16) {
-        this.numero16 = numero16;
+    public String getNumero() {
+        return numero;
     }
 
-
-    public String getNombre() {
-        return nombre;
+    public void setNumero(String numero) {
+        this.numero = numero;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public String getFechaCaducidad() {
+        return fechaCaducidad;
+    }
+
+    public void setFechaCaducidad(String fechaCaducidad) {
+        this.fechaCaducidad = fechaCaducidad;
     }
 
     @Override
     public String toString() {
-        return "TarjetaCredito{" + "nombre=" + nombre + ", numero16=" + numero16 + ", fecha_caducidad=" + fecha_caducidad + '}';
+        return "Titular: " + titular + ", Número: " + numero + ", Caduca: " + fechaCaducidad;
     }
 }

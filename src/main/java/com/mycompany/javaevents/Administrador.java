@@ -1,10 +1,15 @@
 package com.mycompany.javaevents;
 
-public class Administrador extends Usuarios{
+import java.io.Serializable;
 
-    public Administrador(String correo, String clave) {
-        super(correo, clave);
+public class Administrador extends Usuarios implements Serializable {
+
+    public Administrador(String nombre, String correo, String clave) {
+        super(nombre, correo, clave);
     }
 
+    @Override
+    public String toString() {
+        return "Administrador: " + super.toString();
+    }
 }
-/////fwdnvjwbvbvefhierpñg

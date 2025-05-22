@@ -1,23 +1,25 @@
 package com.mycompany.javaevents;
 
-public abstract class Usuarios {
-    
+import java.io.Serializable;
+
+public abstract class Usuarios implements Serializable {
+    private String nombre;
     private String correo;
     private String clave;
 
-    public Usuarios(String correo, String clave) {
+    public Usuarios(String nombre, String correo, String clave) {
+        this.nombre = nombre;
         this.correo = correo;
         this.clave = clave;
     }
-    
-    public String getClave() {
-        return clave;
+
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setClave(String clave) {
-        this.clave = clave;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
-
 
     public String getCorreo() {
         return correo;
@@ -27,10 +29,17 @@ public abstract class Usuarios {
         this.correo = correo;
     }
 
-    @Override
-    public String toString() {
-        return "Usuarios{" + "correo=" + correo + ", clave=" + clave + '}';
+    public String getClave() {
+        return clave;
     }
 
-    
+    public void setClave(String clave) {
+        this.clave = clave;
+    }
+
+    @Override
+    public String toString() {
+        return nombre + " (" + correo + ")";
+    }
 }
+

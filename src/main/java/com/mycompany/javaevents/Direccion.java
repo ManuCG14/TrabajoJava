@@ -1,46 +1,19 @@
 package com.mycompany.javaevents;
 
-public class Direccion {
-    
+import java.io.Serializable;
+
+public class Direccion implements Serializable {
     private String calle;
     private String numero;
     private String ciudad;
-    private String codigo_postal;
+    private String codigoPostal;
 
-    public Direccion(String calle, String numero, String ciudad, String codigo_postal) {
+    public Direccion(String calle, String numero, String ciudad, String codigoPostal) {
         this.calle = calle;
         this.numero = numero;
         this.ciudad = ciudad;
-        this.codigo_postal = codigo_postal;
+        this.codigoPostal = codigoPostal;
     }
-
-    public String getCodigo_postal() {
-        return codigo_postal;
-    }
-
-    public void setCodigo_postal(String codigo_postal) {
-        this.codigo_postal = codigo_postal;
-    }
-
-    
-
-    public String getCiudad() {
-        return ciudad;
-    }
-
-    public void setCiudad(String ciudad) {
-        this.ciudad = ciudad;
-    }
-
-
-    public String getNumero() {
-        return numero;
-    }
-
-    public void setNumero(String numero) {
-        this.numero = numero;
-    }
-
 
     public String getCalle() {
         return calle;
@@ -50,9 +23,32 @@ public class Direccion {
         this.calle = calle;
     }
 
-    @Override
-    public String toString() {
-        return "Dirrecion{" + "calle=" + calle + ", numero=" + numero + ", ciudad=" + ciudad + ", codigo_postal=" + codigo_postal + '}';
+    public String getNumero() {
+        return numero;
     }
 
+    public void setNumero(String numero) {
+        this.numero = numero;
+    }
+
+    public String getCiudad() {
+        return ciudad;
+    }
+
+    public void setCiudad(String ciudad) {
+        this.ciudad = ciudad;
+    }
+
+    public String getCodigoPostal() {
+        return codigoPostal;
+    }
+
+    public void setCodigoPostal(String codigoPostal) {
+        this.codigoPostal = codigoPostal;
+    }
+
+    @Override
+    public String toString() {
+        return calle + ", " + numero + ", " + ciudad + ", CP: " + codigoPostal;
+    }
 }
