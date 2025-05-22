@@ -7,14 +7,14 @@ public class Clientes extends Usuarios implements Serializable {
     private String telefono;
     private Direccion direccion;
     private TarjetaCredito tarjeta;
-    private boolean esVIP;
+    private boolean VIP;
 
     public Clientes(String nombre, String correo, String clave, String telefono, Direccion direccion, TarjetaCredito tarjeta, boolean esVIP) {
         super(nombre, correo, clave);
         this.telefono = telefono;
         this.direccion = direccion;
         this.tarjeta = tarjeta;
-        this.esVIP = esVIP;
+        this.VIP = VIP;
     }
 
     public String getTelefono() {
@@ -41,17 +41,17 @@ public class Clientes extends Usuarios implements Serializable {
         this.tarjeta = tarjeta;
     }
 
-    public boolean isEsVIP() {
-        return esVIP;
+    public boolean isVIP() {
+        return VIP;
     }
 
-    public void setEsVIP(boolean esVIP) {
-        this.esVIP = esVIP;
+    public void setVIP(boolean VIP) {
+        this.VIP = VIP;
     }
 
     @Override
     public String toString() {
-        return super.toString() + ", Tel: " + telefono + ", VIP: " + esVIP;
+        return super.toString() + ", Tel: " + telefono + ", VIP: " + VIP;
     }
 }
 
