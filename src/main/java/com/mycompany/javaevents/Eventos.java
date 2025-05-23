@@ -6,13 +6,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Eventos implements Serializable {
-     private String titulo;
+    private String titulo;
     private TipoEvento tipo;
     private Direccion direccion;
-    private List<LocalDateTime> fechas; // Lista de fechas
+    private List<LocalDateTime> fechas;
     private double precio;
-    private String portada; // puede ser ruta de imagen
+    private String portada;
     private double calificacion;
+    private List<Reseña> reseñas;
 
     public Eventos(String titulo, TipoEvento tipo, Direccion direccion, double precio, String portada) {
         this.titulo = titulo;
@@ -21,10 +22,10 @@ public class Eventos implements Serializable {
         this.precio = precio;
         this.portada = portada;
         this.fechas = new ArrayList<>();
+        this.reseñas = new ArrayList<>();
         this.calificacion = 0.0;
     }
 
-    // Métodos para trabajar con fechas
     public void agregarFecha(LocalDateTime fecha) {
         fechas.add(fecha);
     }
@@ -37,7 +38,6 @@ public class Eventos implements Serializable {
         return fechas.isEmpty() ? null : fechas.get(0);
     }
 
-    // Getters y Setters
     public String getTitulo() {
         return titulo;
     }
@@ -62,8 +62,29 @@ public class Eventos implements Serializable {
         return calificacion;
     }
 
+    public List<Reseña> getReseñas() {
+        return reseñas;
+    }
+
     public void setCalificacion(double calificacion) {
         this.calificacion = calificacion;
+    }
+
+    public void añadirReseña(Reseña reseña) {
+        reseñas.add(reseña);
+        recalcularCalificacion();
+    }
+
+    private void recalcularCalificacion() {
+        if (reseñas.isEmpty()) {
+            calificacion = 0.0;
+            return;
+        }
+        double suma = 0.0;
+        for (Reseña r : reseñas) {
+            suma += r.getNota();
+        }
+        calificacion = Math.round((suma / reseñas.size()) * 100.0) / 100.0;
     }
 
     @Override
