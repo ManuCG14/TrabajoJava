@@ -61,7 +61,7 @@ public class Reserva implements Serializable {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
 
         StringBuilder factura = new StringBuilder();
-        factura.append("===== FACTURA DE RESERVA =====\n");
+        factura.append("FACTURA DE RESERVAn");
         factura.append("Fecha de Reserva: ").append(fechaReserva.format(formatter)).append("\n");
         factura.append("Cliente: ").append(cliente.getNombre()).append("\n");
         factura.append("Correo: ").append(cliente.getCorreo()).append("\n");
@@ -85,32 +85,6 @@ public class Reserva implements Serializable {
                 " | Fecha: " + fechaEvento + " | Total: " + total + " €";
     }
 
-    // =============================
-    // Métodos de búsqueda de eventos
-    // =============================
-
-    public static List<Eventos> buscarPorCiudad(List<Eventos> lista, String ciudad) {
-        return lista.stream()
-                .filter(e -> e.getDireccion().getCiudad().equalsIgnoreCase(ciudad))
-                .collect(Collectors.toList());
-    }
-
-    public static List<Eventos> buscarPorTipo(List<Eventos> lista, TipoEvento tipo) {
-        return lista.stream()
-                .filter(e -> e.getTipo().equals(tipo))
-                .collect(Collectors.toList());
-    }
-
-    public static List<Eventos> buscarPorCiudadYTipo(List<Eventos> lista, String ciudad, TipoEvento tipo) {
-        return lista.stream()
-                .filter(e -> e.getDireccion().getCiudad().equalsIgnoreCase(ciudad)
-                        && e.getTipo().equals(tipo))
-                .collect(Collectors.toList());
-    }
-
-    // =============================
-    // Método para pruebas
-    // =============================
     public static void imprimirEventos(List<Eventos> lista) {
         if (lista.isEmpty()) {
             System.out.println("No se encontraron eventos.");
