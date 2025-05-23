@@ -11,6 +11,7 @@ public class JavaEventsApp {
     private static List<Usuarios> usuarios = new ArrayList<>();
     private static List<Eventos> eventos = new ArrayList<>();
     private static List<Reserva> reservas = new ArrayList<>();
+    private List<Eventos> listaEventos = new ArrayList<>();
 
     private static final String USUARIOS_FILE = "usuarios.dat";
     private static final String EVENTOS_FILE = "eventos.dat";
@@ -22,8 +23,6 @@ public class JavaEventsApp {
         // Aquí irá el arranque de la interfaz gráfica o consola
         System.out.println("\nBienvenido a JavaEvents");
         System.out.println("Cargados: " + usuarios.size() + " usuarios, " + eventos.size() + " eventos y " + reservas.size() + " reservas.");
-
-        // Aquí podrías invocar una ventana inicial Swing, por ejemplo: new VentanaLogin(usuarios, eventos, reservas);
 
         guardarDatos();
     }
@@ -61,8 +60,39 @@ public class JavaEventsApp {
             return null;
         }
     }
+    
+    // Agregar evento
+public void agregarEvento(Eventos evento) {
+    listaEventos.add(evento);
+    System.out.println("Evento agregado: " + evento.getTitulo());
+}
 
-    // Métodos auxiliares para acceso desde otras clases si se requiere
+// Eliminar evento por título
+public boolean eliminarEvento(String titulo) {
+    for (int i = 0; i < listaEventos.size(); i++) {
+        if (listaEventos.get(i).getTitulo().equalsIgnoreCase(titulo)) {
+            listaEventos.remove(i);
+            System.out.println("Evento eliminado: " + titulo);
+            return true;
+        }
+    }
+    System.out.println("Evento no encontrado: " + titulo);
+    return false;
+}
+
+// Modificar evento por título (sustituye por el nuevo)
+public boolean modificarEvento(String titulo, Eventos nuevoEvento) {
+    for (int i = 0; i < listaEventos.size(); i++) {
+        if (listaEventos.get(i).getTitulo().equalsIgnoreCase(titulo)) {
+            listaEventos.set(i, nuevoEvento);
+            System.out.println("Evento modificado: " + titulo);
+            return true;
+        }
+    }
+    System.out.println("Evento no encontrado para modificar: " + titulo);
+    return false;
+}
+
     public static List<Usuarios> getUsuarios() {
         return usuarios;
     }
