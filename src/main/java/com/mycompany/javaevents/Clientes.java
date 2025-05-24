@@ -17,6 +17,10 @@ public class Clientes extends Usuarios implements Serializable {
         this.VIP = VIP;
     }
 
+    public Clientes(String nombre, String correo, String clave){
+        super(nombre, correo, clave);
+    }
+    
     public String getTelefono() {
         return telefono;
     }

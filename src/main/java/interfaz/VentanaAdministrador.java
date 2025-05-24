@@ -27,18 +27,72 @@ public class VentanaAdministrador extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        btnGestionEventos = new javax.swing.JButton();
+        btnConsultaEventos = new javax.swing.JButton();
+        btnConsultaUsuarios = new javax.swing.JButton();
+        btnConsultaReservas = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI Black", 3, 24)); // NOI18N
+        jLabel1.setText("Administrador");
+
+        btnGestionEventos.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        btnGestionEventos.setText("Gestión de Eventos");
+        btnGestionEventos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGestionEventosActionPerformed(evt);
+            }
+        });
+
+        btnConsultaEventos.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        btnConsultaEventos.setText("Consulta de Eventos");
+        btnConsultaEventos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConsultaEventosActionPerformed(evt);
+            }
+        });
+
+        btnConsultaUsuarios.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        btnConsultaUsuarios.setText("Consulta de Usuarios");
+
+        btnConsultaReservas.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        btnConsultaReservas.setText("Consulta de Reservas");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 703, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(253, 253, 253)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(77, 77, 77)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnConsultaEventos)
+                    .addComponent(btnGestionEventos))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 144, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnConsultaUsuarios)
+                    .addComponent(btnConsultaReservas))
+                .addGap(146, 146, 146))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 374, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(37, 37, 37)
+                .addComponent(jLabel1)
+                .addGap(74, 74, 74)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnGestionEventos)
+                    .addComponent(btnConsultaUsuarios))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 90, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnConsultaEventos)
+                    .addComponent(btnConsultaReservas))
+                .addGap(87, 87, 87))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -58,6 +112,14 @@ public class VentanaAdministrador extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnGestionEventosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGestionEventosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnGestionEventosActionPerformed
+
+    private void btnConsultaEventosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultaEventosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnConsultaEventosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -95,6 +157,11 @@ public class VentanaAdministrador extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnConsultaEventos;
+    private javax.swing.JButton btnConsultaReservas;
+    private javax.swing.JButton btnConsultaUsuarios;
+    private javax.swing.JButton btnGestionEventos;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
