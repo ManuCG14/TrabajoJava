@@ -1,6 +1,7 @@
 package JavaEventsApp;
 
 import com.mycompany.javaevents.*;
+import interfaz.Principal;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -18,6 +19,12 @@ public class JavaEventsApp {
     private static final String RESERVAS_FILE = "reservas.dat";
 
     public static void main(String[] args) {
+        //llamamos y hacemos visible la interfaz
+        Principal princ = new Principal();
+        princ.setVisible(true);
+        princ.setLocationRelativeTo(null);
+        
+        
         cargarDatos();
 
         // Aquí irá el arranque de la interfaz gráfica o consola
