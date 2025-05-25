@@ -15,6 +15,17 @@ public class Direccion implements Serializable {
         this.codigoPostal = codigoPostal;
     }
 
+    public Direccion(String calle, String numero, String ciudad) {
+        this.calle = calle;
+        this.numero = numero;
+        this.ciudad = ciudad;
+    }
+
+    public Direccion(String calle) {
+        this.calle = calle;
+    }
+    
+
     public String getCalle() {
         return calle;
     }
