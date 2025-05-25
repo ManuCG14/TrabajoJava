@@ -28,5 +28,17 @@ public class MetodosAdministrador {
                 .sorted((r1, r2) -> r2.getFechaReserva().compareTo(r1.getFechaReserva()))
                 .forEach(r -> System.out.println(r.generarFactura()));
     }
+
+    public static List<Reserva> mostrarReservas() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    public static List<Eventos> listarEventos() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    public static List<Usuarios> listarUsuarios() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }
 
