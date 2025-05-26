@@ -18,8 +18,13 @@ public class MetodosClientes {
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(ARCHIVO_CLIENTES))) {
             clientes = (List<Clientes>) ois.readObject();
             System.out.println("Clientes cargados: " + clientes.size());
+
+            // Sincronizar lista global
+            Datos.usuarios.clear();
+            Datos.usuarios.addAll(clientes);
         } catch (IOException | ClassNotFoundException e) {
-            clientes = new ArrayList<>(); // Si falla la carga, inicializa vacía
+            clientes = new ArrayList<>();
+            Datos.usuarios.clear();
             System.out.println("No se pudo cargar clientes. Se inicia lista vacía.");
         }
     }
@@ -40,7 +45,12 @@ public class MetodosClientes {
                 .filter(c -> c.getCorreo().equalsIgnoreCase(cliente.getCorreo()))
                 .findFirst();
         if (existente.isPresent()) return false;
+
         clientes.add(cliente);
+
+        // Añadir también a la lista global de usuarios
+        Datos.usuarios.add(cliente);
+
         return true;
     }
 
@@ -113,7 +123,11 @@ public class MetodosClientes {
 
     // Borrar cliente por correo (opcional extra)
     public static boolean borrarCliente(String correo) {
-        return clientes.removeIf(c -> c.getCorreo().equalsIgnoreCase(correo));
+        boolean borrado = clientes.removeIf(c -> c.getCorreo().equalsIgnoreCase(correo));
+        if (borrado) {
+            Datos.usuarios.removeIf(u -> u.getCorreo().equalsIgnoreCase(correo));
+        }
+        return borrado;
     }
 }
 

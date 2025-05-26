@@ -13,15 +13,13 @@ import java.util.stream.Collectors;
 
 public class ConsultaReservas extends javax.swing.JFrame {
     private final List<Reserva> listaReservas;
-    private List<Reserva> reservas;
-    private final DateTimeFormatter dtfFechaHora = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
     private final DateTimeFormatter dtfFecha = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
 
     public ConsultaReservas() {
-        this.listaReservas = MetodosAdministrador.mostrarReservas();
+        this.listaReservas = MetodosAdministrador.obtenerReservas(); // Obtener todas las reservas
         initComponents();
-        mostrarTodasReservas();
+        cargarReservasEnTabla(listaReservas);
     }
 
     @SuppressWarnings("unchecked")
@@ -84,8 +82,8 @@ public class ConsultaReservas extends javax.swing.JFrame {
                     .addComponent(btnFiltrar)
                     .addComponent(btnMostrarTodas))
                 .addGap(34, 34, 34)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 477, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 640, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -132,24 +130,22 @@ public class ConsultaReservas extends javax.swing.JFrame {
 
     private void btnFiltrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFiltrarActionPerformed
         String fechaTexto = txtFecha.getText().trim();
-        try {
-            // Parsear solo la fecha sin hora
-            LocalDate fechaFiltro = LocalDate.parse(fechaTexto, dtfFecha);
+    try {
+        LocalDate fechaFiltro = LocalDate.parse(fechaTexto, dtfFecha);
 
-            List<Reserva> filtradas = listaReservas.stream()
-                    // Compara fechaEvento (LocalDateTime) con la fechaFiltro (LocalDate)
-                    .filter(r -> !r.getFechaEvento().toLocalDate().isBefore(fechaFiltro))
-                    .sorted(Comparator.comparing(Reserva::getFechaReserva).reversed())
-                    .collect(Collectors.toList());
+        List<Reserva> filtradas = listaReservas.stream()
+                .filter(r -> !r.getFechaEvento().toLocalDate().isBefore(fechaFiltro))
+                .sorted(Comparator.comparing(Reserva::getFechaReserva).reversed())
+                .collect(Collectors.toList());
 
-            cargarReservasEnTabla(filtradas);
+        cargarReservasEnTabla(filtradas);
 
-        } catch (DateTimeParseException e) {
-            JOptionPane.showMessageDialog(this,
-                    "Formato de fecha inválido. Usa dd/MM/yyyy.",
-                    "Error",
-                    JOptionPane.ERROR_MESSAGE);
-        }
+    } catch (DateTimeParseException e) {
+        JOptionPane.showMessageDialog(this,
+                "Formato de fecha inválido. Usa dd/MM/yyyy.",
+                "Error",
+                JOptionPane.ERROR_MESSAGE);
+    }
     }//GEN-LAST:event_btnFiltrarActionPerformed
 
     private void txtFechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFechaActionPerformed
@@ -157,7 +153,7 @@ public class ConsultaReservas extends javax.swing.JFrame {
     }//GEN-LAST:event_txtFechaActionPerformed
 
     private void btnMostrarTodasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarTodasActionPerformed
-        mostrarTodasReservas();
+        cargarReservasEnTabla(listaReservas);
     }//GEN-LAST:event_btnMostrarTodasActionPerformed
     
     private void mostrarTodasReservas() {
@@ -170,18 +166,20 @@ public class ConsultaReservas extends javax.swing.JFrame {
         DefaultTableModel model = (DefaultTableModel) tablaReservas.getModel();
         model.setRowCount(0);
 
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+
         for (Reserva r : reservas) {
             model.addRow(new Object[]{
-                    r.getCliente().getNombre(),            // Nombre Cliente
-                    r.getEvento().getTitulo(),             // Título Evento
-                    r.getFechaReserva().format(dtfFechaHora), // Fecha Reserva con hora
-                    r.getFechaEvento().format(dtfFechaHora),  // Fecha Evento con hora
-                    r.getCantidadEntradas(),                // Cantidad entradas
-                    String.format("%.2f", r.getTotal())    // Total en euros con 2 decimales
+                r.getCliente().getNombre(),
+                r.getCliente().getCorreo(),
+                r.getCliente().isVIP() ? "Sí" : "No",
+                r.getEvento().getTitulo(),
+                r.getFechaEvento().format(formatter),
+                r.getCantidadEntradas(),
+                String.format("%.2f", r.getTotal())
             });
         }
     }
-    
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

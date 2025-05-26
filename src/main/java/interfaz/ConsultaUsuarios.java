@@ -2,13 +2,12 @@ package interfaz;
 
 import com.mycompany.javaevents.MetodosAdministrador;
 import com.mycompany.javaevents.Usuarios;
-import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 
 public class ConsultaUsuarios extends javax.swing.JFrame {
     private final List<Usuarios> listaUsuarios;
-    private List<Usuarios> usuarios;
+
 
     public ConsultaUsuarios() {
         this.listaUsuarios = MetodosAdministrador.listarUsuarios(); // <-- inicializar correctamente
@@ -79,8 +78,8 @@ public class ConsultaUsuarios extends javax.swing.JFrame {
                             .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnBuscar))))
                 .addGap(74, 74, 74)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(160, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 470, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -140,7 +139,7 @@ public class ConsultaUsuarios extends javax.swing.JFrame {
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         String correo = txtCorreo.getText().trim();
         if (!correo.isEmpty()) {
-            List<Usuarios> filtrados = MetodosAdministrador.buscarUsuariosPorCorreo(listaUsuarios, correo);
+            List<Usuarios> filtrados = MetodosAdministrador.buscarUsuariosPorCorreo(correo);
             cargarUsuariosEnTabla(filtrados);
         }
     }//GEN-LAST:event_btnBuscarActionPerformed

@@ -11,35 +11,41 @@ public class MetodosAdministrador {
         }
     }
 
-    public static List<Eventos> buscarEventosPorCiudad(List<Eventos> eventos, String ciudad) {
-        return eventos.stream()
+    public static List<Eventos> buscarEventosPorCiudad(String ciudad) {
+        return Datos.eventos.stream()
                 .filter(e -> e.getDireccion().getCiudad().equalsIgnoreCase(ciudad))
                 .collect(Collectors.toList());
     }
 
-    public static List<Usuarios> buscarUsuariosPorCorreo(List<Usuarios> usuarios, String correo) {
-        return usuarios.stream()
+    public static List<Usuarios> buscarUsuariosPorCorreo(String correo) {
+        return Datos.usuarios.stream()
                 .filter(u -> u.getCorreo().equalsIgnoreCase(correo))
                 .collect(Collectors.toList());
     }
 
-    public static void mostrarReservas(List<Reserva> reservas) {
-        reservas.stream()
+    // Imprime las reservas ordenadas por fecha de reserva (de más recientes a más antiguas)
+    public static void imprimirReservasOrdenadas() {
+        Datos.reservas.stream()
                 .sorted((r1, r2) -> r2.getFechaReserva().compareTo(r1.getFechaReserva()))
                 .forEach(r -> System.out.println(r.generarFactura()));
     }
 
+    // Devuelve la lista completa de eventos
     public static List<Eventos> listarEventos() {
         return Datos.eventos;
-}
+    }
 
-    public static List<Reserva> mostrarReservas() {
+    // Devuelve la lista completa de reservas
+    public static List<Reserva> obtenerReservas() {
         return Datos.reservas;
-}
+    }
 
+    // Devuelve la lista completa de usuarios
     public static List<Usuarios> listarUsuarios() {
         return Datos.usuarios;
-}
+    }
 
+    public static List<Eventos> buscarEventosPorCiudad(List<Eventos> listaEventos, String ciudad) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }
-
