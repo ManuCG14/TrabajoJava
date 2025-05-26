@@ -5,39 +5,46 @@ import interfaz.Principal;
 
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.io.*;
-import java.util.ArrayList;
 import java.util.List;
 
 public class JavaEventsApp {
 
-    private static List<Usuarios> usuarios = new ArrayList<>();
-    private static List<Eventos> eventos = new ArrayList<>();
-    private static List<Reserva> reservas = new ArrayList<>();
+    public static Clientes clienteLogueado = null;
+    private static List<Eventos> eventos = new java.util.ArrayList<>();
+    private static List<Reserva> reservas = new java.util.ArrayList<>();
 
-    private static final String USUARIOS_FILE = "usuarios.dat";
     private static final String EVENTOS_FILE = "eventos.dat";
     private static final String RESERVAS_FILE = "reservas.dat";
 
     public static void main(String[] args) {
-        // Cargar todos los datos (incluyendo clientes)
+        // Cargar eventos y reservas
         cargarDatos();
-        MetodosClientes.cargarClientes(); // <--- Cargar clientes aquí si es necesario
 
-        // Mostrar la interfaz principal
+        // Cargar clientes desde archivo usando la clase MetodosClientes
+        MetodosClientes.cargarClientes();
+
+        // Si no hay clientes cargados, crear un cliente de prueba automáticamente
+        if (MetodosClientes.getClientes().isEmpty()) {
+            Clientes clientePrueba = new Clientes("cliente@correo.com", "1234", "Cliente Prueba");
+            MetodosClientes.registrarCliente(clientePrueba);
+            MetodosClientes.guardarClientes();
+            System.out.println("Cliente de prueba registrado automáticamente: cliente@correo.com / 1234");
+        }
+
+        // Mostrar la interfaz gráfica principal
         Principal princ = new Principal();
         princ.setVisible(true);
         princ.setLocationRelativeTo(null);
 
         System.out.println("\nBienvenido a JavaEvents");
-        System.out.println("Cargados: " + usuarios.size() + " usuarios, " + eventos.size() + " eventos y " + reservas.size() + " reservas.");
+        System.out.println("Cargados: " + MetodosClientes.getClientes().size() + " clientes, " + eventos.size() + " eventos y " + reservas.size() + " reservas.");
 
-        // Agregar hook de guardado al cerrar la ventana
+        // Añadir listener para guardar datos al cerrar la ventana principal
         princ.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent windowEvent) {
                 guardarDatos();
-                MetodosClientes.guardarClientes(); // <--- Guardar clientes si aplica
+                MetodosClientes.guardarClientes();
                 System.out.println("Datos guardados correctamente.");
                 System.exit(0);
             }
@@ -46,52 +53,16 @@ public class JavaEventsApp {
 
     @SuppressWarnings("unchecked")
     private static void cargarDatos() {
-        Object u = Datos.cargar(USUARIOS_FILE);
         Object e = Datos.cargar(EVENTOS_FILE);
         Object r = Datos.cargar(RESERVAS_FILE);
 
-        if (u != null) usuarios = (List<Usuarios>) u;
         if (e != null) eventos = (List<Eventos>) e;
         if (r != null) reservas = (List<Reserva>) r;
     }
 
     private static void guardarDatos() {
-        Datos.guardar(USUARIOS_FILE, usuarios);
         Datos.guardar(EVENTOS_FILE, eventos);
         Datos.guardar(RESERVAS_FILE, reservas);
-    }
-
-    public static void agregarEvento(Eventos evento) {
-        eventos.add(evento);
-        System.out.println("Evento agregado: " + evento.getTitulo());
-    }
-
-    public static boolean eliminarEvento(String titulo) {
-        for (int i = 0; i < eventos.size(); i++) {
-            if (eventos.get(i).getTitulo().equalsIgnoreCase(titulo)) {
-                eventos.remove(i);
-                System.out.println("Evento eliminado: " + titulo);
-                return true;
-            }
-        }
-        System.out.println("Evento no encontrado: " + titulo);
-        return false;
-    }
-
-    public static boolean modificarEvento(String titulo, Eventos nuevoEvento) {
-        for (int i = 0; i < eventos.size(); i++) {
-            if (eventos.get(i).getTitulo().equalsIgnoreCase(titulo)) {
-                eventos.set(i, nuevoEvento);
-                System.out.println("Evento modificado: " + titulo);
-                return true;
-            }
-        }
-        System.out.println("Evento no encontrado para modificar: " + titulo);
-        return false;
-    }
-
-    public static List<Usuarios> getUsuarios() {
-        return usuarios;
     }
 
     public static List<Eventos> getEventos() {
@@ -102,3 +73,4 @@ public class JavaEventsApp {
         return reservas;
     }
 }
+

@@ -15,10 +15,6 @@ public class ModificarDatosPersonales extends javax.swing.JFrame {
         cargarDatosCliente();
     }
 
-    ModificarDatosPersonales() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
     private void cargarDatosCliente() {
         if (clienteActual != null) {
             txtNombre.setText(clienteActual.getNombre());
@@ -46,6 +42,35 @@ public class ModificarDatosPersonales extends javax.swing.JFrame {
         }
     }
 
+    private void guardarCambios() {
+    if (clienteActual != null) {
+        clienteActual.setNombre(txtNombre.getText());
+        clienteActual.setCorreo(txtCorreo.getText());
+        clienteActual.setClave(txtContraseña.getText());
+
+        Direccion dir = clienteActual.getDireccion();
+        if (dir == null) {
+            dir = new Direccion();
+        }
+        dir.setCalle(txtCalle.getText());
+        dir.setCiudad(txtCiudad.getText());
+        dir.setCodigoPostal(txtCodigoPostal.getText());
+        clienteActual.setDireccion(dir);
+
+        TarjetaCredito tarjeta = clienteActual.getTarjeta();
+        if (tarjeta == null) {
+            tarjeta = new TarjetaCredito();
+        }
+        tarjeta.setTitular(txtTitular.getText());
+        tarjeta.setNumero(txtNumero.getText());
+        tarjeta.setFechaCaducidad(txtFechaCaducidad.getText());
+        clienteActual.setTarjeta(tarjeta);
+
+        JOptionPane.showMessageDialog(this, "Datos guardados correctamente");
+    }
+}
+
+    
     private void actualizarBotonVIP() {
         if (clienteActual.isVIP()) {
             btnVIP.setText("SI");
@@ -335,6 +360,7 @@ public class ModificarDatosPersonales extends javax.swing.JFrame {
         tarjeta.setFechaCaducidad(txtFechaCaducidad.getText());
 
         JOptionPane.showMessageDialog(this, "Datos modificados correctamente.");
+        guardarCambios();
     }//GEN-LAST:event_btnModificarDatosActionPerformed
 
     private void txtCodigoPostalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodigoPostalActionPerformed
@@ -342,7 +368,10 @@ public class ModificarDatosPersonales extends javax.swing.JFrame {
     }//GEN-LAST:event_txtCodigoPostalActionPerformed
 
     private void btnVIPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVIPActionPerformed
-        // TODO add your handling code here:
+        if (clienteActual != null) {
+        clienteActual.setVIP(!clienteActual.isVIP());
+        actualizarBotonVIP();
+    }
     }//GEN-LAST:event_btnVIPActionPerformed
 
     private void txtCorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCorreoActionPerformed

@@ -4,6 +4,7 @@
  */
 package interfaz;
 
+import JavaEventsApp.JavaEventsApp;
 import com.mycompany.javaevents.Administrador;
 import com.mycompany.javaevents.Clientes;
 import com.mycompany.javaevents.MetodosClientes;
@@ -136,32 +137,33 @@ public class IniciarSesion extends javax.swing.JFrame {
     }//GEN-LAST:event_txtContraseñaActionPerformed
 
     private void btnIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarActionPerformed
-        String correo = txtCorreo.getText();
-        char[] passwordChars = txtContraseña.getPassword();
-        String clave = new String(passwordChars);
+    String correo = txtCorreo.getText();
+    char[] passwordChars = txtContraseña.getPassword();
+    String clave = new String(passwordChars);
 
     // Verificar si es admin
-        if (Administrador.esAdministrador(correo, clave)) {
-            // Abrir ventana administrador
-            javax.swing.JOptionPane.showMessageDialog(this, "Bienvenido administrador");
-            VentanaAdministrador ventanaAdmin = new VentanaAdministrador();
-            ventanaAdmin.setVisible(true);
-            ventanaAdmin.setLocationRelativeTo(null);
-            this.dispose();
-            return;
+    if (Administrador.esAdministrador(correo, clave)) {
+        javax.swing.JOptionPane.showMessageDialog(this, "Bienvenido administrador");
+        VentanaAdministrador ventanaAdmin = new VentanaAdministrador();
+        ventanaAdmin.setVisible(true);
+        ventanaAdmin.setLocationRelativeTo(null);
+        this.dispose();
+        return;
     }
 
     // Intentar login cliente
-        Clientes cliente = MetodosClientes.login(correo, clave);
+    Clientes cliente = MetodosClientes.login(correo, clave);
 
-        if (cliente != null) {
-            javax.swing.JOptionPane.showMessageDialog(this, "Bienvenido " + cliente.getNombre());
-            VentanaClientes ventanaClientes = new VentanaClientes();
-            ventanaClientes.setVisible(true);
-            ventanaClientes.setLocationRelativeTo(null);
-            this.dispose();
-    }   else {
-            javax.swing.JOptionPane.showMessageDialog(this, "Correo o contraseña incorrectos", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+    if (cliente != null) {
+        JavaEventsApp.clienteLogueado = cliente; // ✅ Solo si el login fue exitoso
+        javax.swing.JOptionPane.showMessageDialog(this, "Bienvenido " + cliente.getNombre());
+        VentanaClientes ventanaClientes = new VentanaClientes();
+        ventanaClientes.setVisible(true);
+        ventanaClientes.setLocationRelativeTo(null);
+        this.dispose();
+    } else {
+        javax.swing.JOptionPane.showMessageDialog(this, "Correo o contraseña incorrectos", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+   
     }//GEN-LAST:event_btnIniciarActionPerformed
     }
     
