@@ -247,7 +247,10 @@ public class BuscarEventos extends javax.swing.JFrame {
     }//GEN-LAST:event_btnReseñasActionPerformed
 
     private void btnVerReseñaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerReseñaActionPerformed
-        // TODO add your handling code here:
+        VerReseñas res = new VerReseñas();
+        res.setVisible(true);
+        res.setLocationRelativeTo(null);
+        this.dispose();
     }//GEN-LAST:event_btnVerReseñaActionPerformed
 
 
