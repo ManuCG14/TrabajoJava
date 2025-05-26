@@ -24,6 +24,7 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
               <Component id="jPanel1" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
@@ -73,8 +74,9 @@
                       <Component id="jTextField1" alignment="0" min="-2" pref="122" max="-2" attributes="0"/>
                       <Component id="txtMostrarTodos" alignment="0" max="32767" attributes="0"/>
                       <Component id="txtReservarEventos" alignment="0" pref="139" max="32767" attributes="0"/>
+                      <Component id="btnReseñas" max="32767" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="39" max="32767" attributes="0"/>
+                  <EmptySpace pref="33" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -89,6 +91,8 @@
                   <Component id="txtMostrarTodos" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="txtReservarEventos" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Component id="btnReseñas" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
@@ -128,6 +132,14 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtReservarEventosActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="btnRese&#xf1;as">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Rese&#xf1;as"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRese&#xf1;asActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

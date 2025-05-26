@@ -19,7 +19,6 @@ public class VentanaClientes extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         btnBuscarEvento = new javax.swing.JButton();
-        btnReseñas = new javax.swing.JButton();
         btnConsultarReservas = new javax.swing.JButton();
         btnModificarDatos = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
@@ -35,14 +34,6 @@ public class VentanaClientes extends javax.swing.JFrame {
         btnBuscarEvento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBuscarEventoActionPerformed(evt);
-            }
-        });
-
-        btnReseñas.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        btnReseñas.setText("Reseñas");
-        btnReseñas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnReseñasActionPerformed(evt);
             }
         });
 
@@ -78,14 +69,15 @@ public class VentanaClientes extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(71, 71, 71)
+                .addComponent(btnBuscarEvento)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnBuscarEvento)
-                    .addComponent(btnReseñas))
-                .addGap(211, 211, 211)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnModificarDatos)
-                    .addComponent(btnConsultarReservas))
-                .addContainerGap(83, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(211, 211, 211)
+                        .addComponent(btnConsultarReservas))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(23, 23, 23)
+                        .addComponent(btnModificarDatos)))
+                .addContainerGap(139, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -108,9 +100,7 @@ public class VentanaClientes extends javax.swing.JFrame {
                     .addComponent(btnBuscarEvento)
                     .addComponent(btnConsultarReservas))
                 .addGap(97, 97, 97)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnReseñas)
-                    .addComponent(btnModificarDatos))
+                .addComponent(btnModificarDatos)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
                 .addComponent(btnSalir)
                 .addContainerGap())
@@ -148,13 +138,6 @@ public class VentanaClientes extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnConsultarReservasActionPerformed
 
-    private void btnReseñasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReseñasActionPerformed
-        Reseñas reseña = new Reseñas();
-        reseña.setVisible(true);
-        reseña.setLocationRelativeTo(null);
-        this.dispose();
-    }//GEN-LAST:event_btnReseñasActionPerformed
-
     private void btnModificarDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarDatosActionPerformed
         ModificarDatosPersonales datospersonales = new ModificarDatosPersonales();
         datospersonales.setVisible(true);
@@ -173,7 +156,6 @@ public class VentanaClientes extends javax.swing.JFrame {
     private javax.swing.JButton btnBuscarEvento;
     private javax.swing.JButton btnConsultarReservas;
     private javax.swing.JButton btnModificarDatos;
-    private javax.swing.JButton btnReseñas;
     private javax.swing.JButton btnSalir;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
