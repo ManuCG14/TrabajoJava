@@ -4,10 +4,21 @@
  */
 package interfaz;
 
+import com.mycompany.javaevents.Clientes;
+import javax.swing.JOptionPane;
+
 
 public class VentanaClientes extends javax.swing.JFrame {
 
 
+    private Clientes clienteLogueado;  // Cliente actual
+
+    // Constructor que recibe el cliente actual
+    public VentanaClientes(Clientes cliente) {
+        initComponents();
+        this.clienteLogueado = cliente;
+    }
+    
     public VentanaClientes() {
         initComponents();
     }
@@ -71,7 +82,7 @@ public class VentanaClientes extends javax.swing.JFrame {
         });
 
         btnVerReseña.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        btnVerReseña.setText("Hacer Reseña");
+        btnVerReseña.setText("Ver Reseña");
         btnVerReseña.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnVerReseñaActionPerformed(evt);
@@ -159,10 +170,14 @@ public class VentanaClientes extends javax.swing.JFrame {
     }//GEN-LAST:event_btnConsultarReservasActionPerformed
 
     private void btnModificarDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarDatosActionPerformed
-        ModificarDatosPersonales datospersonales = new ModificarDatosPersonales();
-        datospersonales.setVisible(true);
-        datospersonales.setLocationRelativeTo(null);
-        this.dispose();
+        if(clienteLogueado != null) {
+            ModificarDatosPersonales datospersonales = new ModificarDatosPersonales(clienteLogueado);
+            datospersonales.setVisible(true);
+            datospersonales.setLocationRelativeTo(null);
+            this.dispose();
+        } else {
+            JOptionPane.showMessageDialog(this, "No hay cliente logueado");
+        }
     }//GEN-LAST:event_btnModificarDatosActionPerformed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed

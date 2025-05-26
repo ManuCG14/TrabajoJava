@@ -25,6 +25,10 @@ public class Direccion implements Serializable {
     public Direccion(String calle) {
         this.calle = calle;
     }
+
+    public Direccion() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
     
 
     public String getCalle() {

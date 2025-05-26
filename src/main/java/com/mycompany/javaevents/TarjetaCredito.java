@@ -14,6 +14,10 @@ public class TarjetaCredito implements Serializable {
         this.fechaCaducidad = fechaCaducidad;
     }
 
+    public TarjetaCredito() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
     public String getTitular() {
         return titular;
     }
