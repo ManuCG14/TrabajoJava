@@ -92,4 +92,8 @@ public class Eventos implements Serializable {
     public String toString() {
         return "Evento: " + titulo + " - Tipo: " + tipo + " - Precio: " + precio + "€";
     }
+
+    public Object getCiudad() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }

@@ -11,11 +11,11 @@ public class MetodosAdministrador {
         }
     }
 
-    public static List<Eventos> buscarEventosPorCiudad(String ciudad) {
-        return Datos.eventos.stream()
-                .filter(e -> e.getDireccion().getCiudad().equalsIgnoreCase(ciudad))
-                .collect(Collectors.toList());
-    }
+    public static List<Eventos> buscarEventosPorCiudad(List<Eventos> eventos, String ciudad) {
+    return eventos.stream()
+                 .filter(e -> e.getDireccion().getCiudad().equalsIgnoreCase(ciudad))
+                 .collect(Collectors.toList());
+}
 
     public static List<Usuarios> buscarUsuariosPorCorreo(String correo) {
         return Datos.usuarios.stream()
@@ -45,7 +45,5 @@ public class MetodosAdministrador {
         return Datos.usuarios;
     }
 
-    public static List<Eventos> buscarEventosPorCiudad(List<Eventos> listaEventos, String ciudad) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+
 }

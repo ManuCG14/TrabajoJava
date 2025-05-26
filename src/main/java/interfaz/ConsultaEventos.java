@@ -48,13 +48,13 @@ public class ConsultaEventos extends javax.swing.JFrame {
 
         tablaEventos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Titulo", "Tipo", "Dirección"
+                "Titulo", "Tipo", "Precio", "Ciudad"
             }
         ));
         jScrollPane1.setViewportView(tablaEventos);
@@ -148,7 +148,8 @@ public class ConsultaEventos extends javax.swing.JFrame {
             model.addRow(new Object[]{
                 e.getTitulo(),
                 e.getTipo(),
-                e.getDireccion().getCiudad()
+                e.getPrecio(),
+                e.getDireccion().getCiudad(),
             });
         }
     }

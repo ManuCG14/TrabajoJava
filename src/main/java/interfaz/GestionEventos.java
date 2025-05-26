@@ -1,31 +1,27 @@
 package interfaz;
 
+import com.mycompany.javaevents.Datos;
 import com.mycompany.javaevents.Direccion;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-import java.awt.event.*;
-import java.util.List;
-import java.util.ArrayList;
 import com.mycompany.javaevents.Eventos;
 import com.mycompany.javaevents.TipoEvento;
 
 public class GestionEventos extends javax.swing.JFrame {
-    private JTable tablaEventos;
     private DefaultTableModel modeloTabla;
-    private List<Eventos> listaEventos = new ArrayList<>();
 
 
     public GestionEventos() {
         initComponents();
-        JScrollPane scrollPane = new JScrollPane();
-    tablaEventos = new JTable();
-    modeloTabla = new DefaultTableModel(new Object[][] {}, new String[] {
-        "Título", "Tipo", "Ciudad", "Precio"
-    });
-    tablaEventos.setModel(modeloTabla);
-    scrollPane.setViewportView(tablaEventos);
-
-    }
+        configurarTabla();
+        cargarTabla();
+}
+    private void configurarTabla() {
+        modeloTabla = new DefaultTableModel(new Object[][] {}, new String[] {
+            "Título", "Tipo", "Ciudad", "Precio"
+        });
+        tablaEvento.setModel(modeloTabla);
+}
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -36,6 +32,8 @@ public class GestionEventos extends javax.swing.JFrame {
         btnEliminar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         btnSalir = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tablaEvento = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -74,6 +72,19 @@ public class GestionEventos extends javax.swing.JFrame {
             }
         });
 
+        tablaEvento.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Título", "Tipo", "Ciudad", "Precio"
+            }
+        ));
+        jScrollPane1.setViewportView(tablaEvento);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -83,31 +94,36 @@ public class GestionEventos extends javax.swing.JFrame {
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(198, 198, 198))
             .addGroup(layout.createSequentialGroup()
-                .addGap(150, 150, 150)
+                .addGap(65, 65, 65)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnEliminar)
                     .addComponent(btnEditar)
                     .addComponent(btnAgregar))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 417, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(40, 40, 40)
                 .addComponent(jLabel1)
-                .addGap(68, 68, 68)
-                .addComponent(btnAgregar)
-                .addGap(49, 49, 49)
-                .addComponent(btnEditar)
-                .addGap(45, 45, 45)
-                .addComponent(btnEliminar)
-                .addGap(38, 38, 38)
-                .addComponent(btnSalir)
-                .addContainerGap(45, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(61, 61, 61)
+                        .addComponent(btnAgregar)
+                        .addGap(52, 52, 52)
+                        .addComponent(btnEditar)
+                        .addGap(46, 46, 46)
+                        .addComponent(btnEliminar)
+                        .addGap(41, 41, 41)
+                        .addComponent(btnSalir)
+                        .addContainerGap(131, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addContainerGap())))
         );
 
         pack();
@@ -121,52 +137,56 @@ public class GestionEventos extends javax.swing.JFrame {
 
         if (titulo != null && tipo != null && ciudad != null && precioStr != null) {
             try {
-                double precio = Double.parseDouble(precioStr);
-                Eventos nuevo = new Eventos(titulo, Enum.valueOf(TipoEvento.class, tipo.toUpperCase()),
-                    new Direccion("Calle Ejemplo", ciudad, "00000"), precio, "portada.png");
-                listaEventos.add(nuevo);
-                modeloTabla.addRow(new Object[] {titulo, tipo, ciudad, precio});
-        }   catch (Exception e) {
-                JOptionPane.showMessageDialog(this, "Datos inválidos: " + e.getMessage());
+            double precio = Double.parseDouble(precioStr);
+                Eventos nuevo = new Eventos(
+                    titulo,
+                    Enum.valueOf(TipoEvento.class, tipo.toUpperCase()),
+                    new Direccion("Calle Ejemplo", "1", ciudad, "00000"),  // Aquí corregido
+                    precio,
+                    "portada.png"
+            );
+            Datos.eventos.add(nuevo);
+            cargarTabla();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Datos inválidos: " + e.getMessage());
         }
     }
-
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
-        int fila = tablaEventos.getSelectedRow();
-        if (fila >= 0) {
-            Eventos evento = listaEventos.get(fila);
+        int fila = tablaEvento.getSelectedRow();
+    if (fila >= 0) {
+        Eventos evento = Datos.eventos.get(fila);
 
-            String nuevoTitulo = JOptionPane.showInputDialog(this, "Nuevo título:", evento.getTitulo());
-            String nuevaCiudad = JOptionPane.showInputDialog(this, "Nueva ciudad:", evento.getDireccion().getCiudad());
-            String nuevoTipo = JOptionPane.showInputDialog(this, "Nuevo tipo:", evento.getTipo().toString());
-            String nuevoPrecio = JOptionPane.showInputDialog(this, "Nuevo precio:", String.valueOf(evento.getPrecio()));
+        String nuevoTitulo = JOptionPane.showInputDialog(this, "Nuevo título:", evento.getTitulo());
+        String nuevaCiudad = JOptionPane.showInputDialog(this, "Nueva ciudad:", evento.getDireccion().getCiudad());
+        String nuevoTipo = JOptionPane.showInputDialog(this, "Nuevo tipo:", evento.getTipo().toString());
+        String nuevoPrecio = JOptionPane.showInputDialog(this, "Nuevo precio:", String.valueOf(evento.getPrecio()));
 
-            try {
-                evento = new Eventos(
+        try {
+            Eventos nuevoEvento = new Eventos(
                     nuevoTitulo,
                     TipoEvento.valueOf(nuevoTipo.toUpperCase()),
-                    new Direccion(nuevaCiudad),
+                    new Direccion("Calle Ejemplo", "1", nuevaCiudad, "00000"),  // Aquí corregido también
                     Double.parseDouble(nuevoPrecio),
                     evento.getPortada()
-                );
-                listaEventos.set(fila, evento);
-                cargarTabla();
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(this, "Datos inválidos.");
-            }
-        } else {
-            JOptionPane.showMessageDialog(this, "Seleccione un evento para editar.");
+            );
+            Datos.eventos.set(fila, nuevoEvento);
+            cargarTabla();
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Datos inválidos.");
         }
+    } else {
+        JOptionPane.showMessageDialog(this, "Seleccione un evento para editar.");
+    }
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        int fila = tablaEventos.getSelectedRow();
+        int fila = tablaEvento.getSelectedRow();
         if (fila >= 0) {
             int confirm = JOptionPane.showConfirmDialog(this, "¿Eliminar este evento?", "Confirmar", JOptionPane.YES_NO_OPTION);
             if (confirm == JOptionPane.YES_OPTION) {
-                listaEventos.remove(fila);
+                Datos.eventos.remove(fila);
                 cargarTabla();
             }
         } else {
@@ -180,16 +200,27 @@ public class GestionEventos extends javax.swing.JFrame {
         ventA.setLocationRelativeTo(null);
         this.dispose();
     }//GEN-LAST:event_btnSalirActionPerformed
-
+    
+    private void cargarTabla() {
+        modeloTabla.setRowCount(0);
+        for (Eventos evento : Datos.eventos) {
+            modeloTabla.addRow(new Object[]{
+                evento.getTitulo(),
+                evento.getTipo().toString(),
+                evento.getDireccion().getCiudad(),
+                evento.getPrecio()
+            });
+        }
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnSalir;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable tablaEvento;
     // End of variables declaration//GEN-END:variables
 
-    private void cargarTabla() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+ 
 }
