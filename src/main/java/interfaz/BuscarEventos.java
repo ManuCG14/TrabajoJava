@@ -34,6 +34,7 @@ public class BuscarEventos extends javax.swing.JFrame {
         txtMostrarTodos = new javax.swing.JButton();
         txtReservarEventos = new javax.swing.JButton();
         btnReseñas = new javax.swing.JButton();
+        btnVerReseña = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableBuscarEventos = new javax.swing.JTable();
@@ -65,10 +66,19 @@ public class BuscarEventos extends javax.swing.JFrame {
             }
         });
 
-        btnReseñas.setText("Reseñas");
+        btnReseñas.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        btnReseñas.setText("Hacer Reseña");
         btnReseñas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnReseñasActionPerformed(evt);
+            }
+        });
+
+        btnVerReseña.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        btnVerReseña.setText("Ver Reseñas");
+        btnVerReseña.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVerReseñaActionPerformed(evt);
             }
         });
 
@@ -83,7 +93,8 @@ public class BuscarEventos extends javax.swing.JFrame {
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtMostrarTodos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txtReservarEventos, javax.swing.GroupLayout.DEFAULT_SIZE, 139, Short.MAX_VALUE)
-                    .addComponent(btnReseñas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnReseñas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnVerReseña, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(33, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -99,6 +110,8 @@ public class BuscarEventos extends javax.swing.JFrame {
                 .addComponent(txtReservarEventos)
                 .addGap(18, 18, 18)
                 .addComponent(btnReseñas)
+                .addGap(18, 18, 18)
+                .addComponent(btnVerReseña)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -233,10 +246,15 @@ public class BuscarEventos extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnReseñasActionPerformed
 
+    private void btnVerReseñaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerReseñaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnVerReseñaActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnReseñas;
     private javax.swing.JButton btnSalir;
+    private javax.swing.JButton btnVerReseña;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
