@@ -9,6 +9,8 @@ public class Datos {
     public static List<Eventos> eventos = new ArrayList<>();
     public static List<Reserva> reservas = new ArrayList<>();
 
+    public static Usuarios usuarioActual;
+    
     public static void guardar(String archivo, Object objeto) {
         try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(archivo))) {
             out.writeObject(objeto);

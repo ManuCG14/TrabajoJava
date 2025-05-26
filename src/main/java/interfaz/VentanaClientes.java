@@ -22,6 +22,8 @@ public class VentanaClientes extends javax.swing.JFrame {
         btnConsultarReservas = new javax.swing.JButton();
         btnModificarDatos = new javax.swing.JButton();
         btnSalir = new javax.swing.JButton();
+        btnReseñas = new javax.swing.JButton();
+        btnVerReseña = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -60,21 +62,26 @@ public class VentanaClientes extends javax.swing.JFrame {
             }
         });
 
+        btnReseñas.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        btnReseñas.setText("Hacer Reseña");
+        btnReseñas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReseñasActionPerformed(evt);
+            }
+        });
+
+        btnVerReseña.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        btnVerReseña.setText("Hacer Reseña");
+        btnVerReseña.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVerReseñaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(71, 71, 71)
-                .addComponent(btnBuscarEvento)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(211, 211, 211)
-                        .addComponent(btnConsultarReservas))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(23, 23, 23)
-                        .addComponent(btnModificarDatos)))
-                .addContainerGap(139, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -84,6 +91,21 @@ public class VentanaClientes extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(71, 71, 71)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnBuscarEvento)
+                            .addComponent(btnReseñas))
+                        .addGap(211, 211, 211)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnConsultarReservas)
+                            .addComponent(btnVerReseña)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(214, 214, 214)
+                        .addComponent(btnModificarDatos)))
+                .addContainerGap(139, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -93,9 +115,13 @@ public class VentanaClientes extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnBuscarEvento)
                     .addComponent(btnConsultarReservas))
-                .addGap(97, 97, 97)
+                .addGap(72, 72, 72)
                 .addComponent(btnModificarDatos)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 152, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 78, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnReseñas)
+                    .addComponent(btnVerReseña))
+                .addGap(72, 72, 72)
                 .addComponent(btnSalir)
                 .addContainerGap())
         );
@@ -146,11 +172,27 @@ public class VentanaClientes extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnSalirActionPerformed
 
+    private void btnReseñasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReseñasActionPerformed
+        Reseñas reseña = new Reseñas();
+        reseña.setVisible(true);
+        reseña.setLocationRelativeTo(null);
+        this.dispose();
+    }//GEN-LAST:event_btnReseñasActionPerformed
+
+    private void btnVerReseñaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerReseñaActionPerformed
+        VerReseñas reseñas = new VerReseñas();
+        reseñas.setVisible(true);
+        reseñas.setLocationRelativeTo(null);
+        this.dispose();
+    }//GEN-LAST:event_btnVerReseñaActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscarEvento;
     private javax.swing.JButton btnConsultarReservas;
     private javax.swing.JButton btnModificarDatos;
+    private javax.swing.JButton btnReseñas;
     private javax.swing.JButton btnSalir;
+    private javax.swing.JButton btnVerReseña;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
