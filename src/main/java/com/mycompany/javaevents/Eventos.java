@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Eventos implements Serializable {
+    private static final long serialVersionUID = 1L;
     private String titulo;
     private TipoEvento tipo;
     private Direccion direccion;

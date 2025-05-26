@@ -8,6 +8,12 @@ package interfaz;
  *
  * @author ismae
  */
+import JavaEventsApp.JavaEventsApp;
+import com.mycompany.javaevents.Eventos;
+import javax.swing.table.DefaultTableModel;
+import java.util.List;
+import javax.swing.JOptionPane;
+
 public class BuscarEventos extends javax.swing.JFrame {
 
     /**
@@ -35,6 +41,11 @@ public class BuscarEventos extends javax.swing.JFrame {
 
         txtBuscar.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         txtBuscar.setText("Buscar");
+        txtBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtBuscarActionPerformed(evt);
+            }
+        });
 
         txtMostrarTodos.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         txtMostrarTodos.setText("Mostar Todos");
@@ -46,6 +57,11 @@ public class BuscarEventos extends javax.swing.JFrame {
 
         txtReservarEventos.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         txtReservarEventos.setText("Reservar Evento");
+        txtReservarEventos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtReservarEventosActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -120,10 +136,63 @@ public class BuscarEventos extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+        private void actualizarTabla(List<Eventos> lista) {
+            
+            DefaultTableModel modelo = (DefaultTableModel) tableBuscarEventos.getModel();
+    modelo.setRowCount(0); // Limpia la tabla
+
+        for (Eventos e : lista) {
+            modelo.addRow(new Object[]{e.getTitulo(), e.getTipo(), e.getDireccion()});
+    }
+
+}
 
     private void txtMostrarTodosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMostrarTodosActionPerformed
-        // TODO add your handling code here:
+        List<Eventos> eventos = JavaEventsApp.getEventos();
+        actualizarTabla(eventos);
     }//GEN-LAST:event_txtMostrarTodosActionPerformed
+
+    private void txtBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscarActionPerformed
+        String texto = txtBuscar.getText().trim().toLowerCase();
+
+    if (texto.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Introduce un texto para buscar.");
+        return;
+    }
+
+    List<Eventos> eventosFiltrados = JavaEventsApp.getEventos().stream()
+            .filter(e -> e.getTitulo().toLowerCase().contains(texto))
+            .toList();
+
+    actualizarTabla(eventosFiltrados);
+
+    }//GEN-LAST:event_txtBuscarActionPerformed
+
+    private void txtReservarEventosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtReservarEventosActionPerformed
+        int filaSeleccionada = tableBuscarEventos.getSelectedRow();
+
+    if (filaSeleccionada == -1) {
+        JOptionPane.showMessageDialog(this, "Selecciona un evento para reservar.");
+        return;
+    }
+
+    String tituloEvento = (String) tableBuscarEventos.getValueAt(filaSeleccionada, 0);
+
+    // Buscar el evento por título (puede haber mejor forma si usas IDs únicos)
+    Eventos eventoSeleccionado = JavaEventsApp.getEventos().stream()
+            .filter(e -> e.getTitulo().equals(tituloEvento))
+            .findFirst()
+            .orElse(null);
+
+    if (eventoSeleccionado == null) {
+        JOptionPane.showMessageDialog(this, "Evento no encontrado.");
+        return;
+    }
+
+    // Lógica de reserva (puedes mejorarla después)
+    JOptionPane.showMessageDialog(this, "¡Evento reservado: " + eventoSeleccionado.getTitulo() + "!");
+
+    }//GEN-LAST:event_txtReservarEventosActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

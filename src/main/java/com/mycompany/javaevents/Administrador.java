@@ -3,7 +3,8 @@ package com.mycompany.javaevents;
 import java.io.Serializable;
 
 public class Administrador extends Usuarios implements Serializable {
-
+    
+    private static final long serialVersionUID = 1L;
     public static final String ADMIN_CORREO = "admin@javaevents.com";
     public static final String ADMIN_CLAVE = "admin";
 

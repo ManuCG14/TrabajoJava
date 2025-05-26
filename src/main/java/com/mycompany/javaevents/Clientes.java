@@ -4,6 +4,7 @@ package com.mycompany.javaevents;
 import java.io.Serializable;
 
 public class Clientes extends Usuarios implements Serializable {
+    private static final long serialVersionUID = 1L;
     private String telefono;
     private Direccion direccion;
     private TarjetaCredito tarjeta;

@@ -3,6 +3,7 @@ package com.mycompany.javaevents;
 import java.io.Serializable;
 
 public class TarjetaCredito implements Serializable {
+    private static final long serialVersionUID = 1L;
     private String titular;
     private String numero;
     private String fechaCaducidad;

@@ -3,6 +3,7 @@ package com.mycompany.javaevents;
 import java.io.Serializable;
 
 public class Reseña implements Serializable {
+    private static final long serialVersionUID = 1L;
     private int nota;
     private String comentario;
 

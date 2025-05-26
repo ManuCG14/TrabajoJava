@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Reserva implements Serializable {
+    private static final long serialVersionUID = 1L;
     private Clientes cliente;
     private Eventos evento;
     private LocalDateTime fechaReserva;

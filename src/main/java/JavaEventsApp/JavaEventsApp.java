@@ -3,6 +3,8 @@ package JavaEventsApp;
 import com.mycompany.javaevents.*;
 import interfaz.Principal;
 
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +22,7 @@ public class JavaEventsApp {
     public static void main(String[] args) {
         // Cargar todos los datos (incluyendo clientes)
         cargarDatos();
-        MetodosClientes.cargarClientes(); // <--- Cargar clientes aquí
+        MetodosClientes.cargarClientes(); // <--- Cargar clientes aquí si es necesario
 
         // Mostrar la interfaz principal
         Principal princ = new Principal();
@@ -31,11 +33,11 @@ public class JavaEventsApp {
         System.out.println("Cargados: " + usuarios.size() + " usuarios, " + eventos.size() + " eventos y " + reservas.size() + " reservas.");
 
         // Agregar hook de guardado al cerrar la ventana
-        princ.addWindowListener(new java.awt.event.WindowAdapter() {
+        princ.addWindowListener(new WindowAdapter() {
             @Override
-            public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+            public void windowClosing(WindowEvent windowEvent) {
                 guardarDatos();
-                MetodosClientes.guardarClientes(); // <--- Guardar clientes al cerrar
+                MetodosClientes.guardarClientes(); // <--- Guardar clientes si aplica
                 System.out.println("Datos guardados correctamente.");
                 System.exit(0);
             }
@@ -44,43 +46,20 @@ public class JavaEventsApp {
 
     @SuppressWarnings("unchecked")
     private static void cargarDatos() {
-        usuarios = (List<Usuarios>) cargarObjeto(USUARIOS_FILE);
-        eventos = (List<Eventos>) cargarObjeto(EVENTOS_FILE);
-        reservas = (List<Reserva>) cargarObjeto(RESERVAS_FILE);
+        Object u = Datos.cargar(USUARIOS_FILE);
+        Object e = Datos.cargar(EVENTOS_FILE);
+        Object r = Datos.cargar(RESERVAS_FILE);
 
-        if (usuarios == null) usuarios = new ArrayList<>();
-        if (eventos == null) eventos = new ArrayList<>();
-        if (reservas == null) reservas = new ArrayList<>();
+        if (u != null) usuarios = (List<Usuarios>) u;
+        if (e != null) eventos = (List<Eventos>) e;
+        if (r != null) reservas = (List<Reserva>) r;
     }
 
     private static void guardarDatos() {
-        guardarObjeto(USUARIOS_FILE, usuarios);
-        guardarObjeto(EVENTOS_FILE, eventos);
-        guardarObjeto(RESERVAS_FILE, reservas);
+        Datos.guardar(USUARIOS_FILE, usuarios);
+        Datos.guardar(EVENTOS_FILE, eventos);
+        Datos.guardar(RESERVAS_FILE, reservas);
     }
-
-    private static void guardarObjeto(String file, Object data) {
-        try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(file))) {
-            out.writeObject(data);
-            System.out.println("Guardado " + file + " con " + ((List<?>)data).size() + " elementos.");
-        } catch (IOException e) {
-            System.err.println("Error guardando " + file + ": " + e.getMessage());
-            e.printStackTrace();
-        }
-    }
-
-    private static Object cargarObjeto(String file) {
-        try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(file))) {
-            Object obj = in.readObject();
-            System.out.println("Cargado " + file + " con " + ((List<?>)obj).size() + " elementos.");
-            return obj;
-        } catch (IOException | ClassNotFoundException e) {
-            System.out.println("Archivo " + file + " no encontrado o vacío. Se creará nuevo.");
-            return null;
-        }
-    }
-
-    // Métodos para agregar, eliminar y modificar eventos usando la lista estática 'eventos'
 
     public static void agregarEvento(Eventos evento) {
         eventos.add(evento);

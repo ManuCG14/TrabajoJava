@@ -3,6 +3,7 @@ package com.mycompany.javaevents;
 import java.io.Serializable;
 
 public abstract class Usuarios implements Serializable {
+    private static final long serialVersionUID = 1L;
     private String nombre;
     private String correo;
     private String clave;
