@@ -39,7 +39,7 @@ public class ConsultaEventos extends javax.swing.JFrame {
         });
 
         btnBuscar.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        btnBuscar.setText("Buscar");
+        btnBuscar.setText("Buscar por ciudad");
         btnBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBuscarActionPerformed(evt);
