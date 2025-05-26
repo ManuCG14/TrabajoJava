@@ -93,7 +93,10 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnIniciarSesionActionPerformed
 
     private void btnRegistrarseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarseActionPerformed
-        // TODO add your handling code here:
+        Registro registro = new Registro();
+        registro.setVisible(true);
+        registro.setLocationRelativeTo(null);
+        this.dispose();
     }//GEN-LAST:event_btnRegistrarseActionPerformed
 
     
