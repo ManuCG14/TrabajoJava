@@ -24,6 +24,7 @@ public class Reserva implements Serializable {
         this.cantidadEntradas = cantidadEntradas;
         this.fechaReserva = LocalDateTime.now();
 
+        System.out.println("¿Cliente VIP?: " + cliente.isVIP());
         double precioBase = evento.getPrecio() * cantidadEntradas;
         if (cliente.isVIP()) {
             this.total = precioBase * 0.9;
