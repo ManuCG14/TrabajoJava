@@ -54,11 +54,11 @@ public class Principal extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(190, 190, 190)
+                .addGap(231, 231, 231)
                 .addComponent(btnIniciarSesion)
-                .addGap(34, 34, 34)
+                .addGap(57, 57, 57)
                 .addComponent(btnRegistrarse)
-                .addContainerGap(235, Short.MAX_VALUE))
+                .addContainerGap(175, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
