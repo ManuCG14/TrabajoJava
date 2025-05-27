@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package interfaz;
 
 import JavaEventsApp.JavaEventsApp;
@@ -156,13 +152,13 @@ public class IniciarSesion extends javax.swing.JFrame {
     Usuarios usuario = MetodosClientes.iniciarSesion(correo, clave);
 
     if (usuario != null) {
-        JavaEventsApp.clienteLogueado = (Clientes) usuario; // ✅ Solo si el login fue exitoso
+        JavaEventsApp.clienteLogueado = (Clientes) usuario;
         javax.swing.JOptionPane.showMessageDialog(this, "Bienvenido " + usuario.getNombre());
-        VentanaClientes ventanaClientes = new VentanaClientes();
+        VentanaClientes ventanaClientes = new VentanaClientes(JavaEventsApp.clienteLogueado);
         ventanaClientes.setVisible(true);
         ventanaClientes.setLocationRelativeTo(null);
         this.dispose();
-    } else {
+}   else {
         javax.swing.JOptionPane.showMessageDialog(this, "Correo o contraseña incorrectos", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
    
     }//GEN-LAST:event_btnIniciarActionPerformed

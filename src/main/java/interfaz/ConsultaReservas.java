@@ -38,13 +38,13 @@ public class ConsultaReservas extends javax.swing.JFrame {
 
         tablaReservas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Cliente", "Evento", "Fecha Reserva", "Fecha Evento", "Cantidad", "Total(euros)"
+                "Cliente", "Evento", "Fecha Reserva", "Cantidad", "Total(euros)"
             }
         ));
         jScrollPane1.setViewportView(tablaReservas);

@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package interfaz;
 
 import JavaEventsApp.JavaEventsApp;
@@ -18,11 +14,13 @@ public class VentanaClientes extends javax.swing.JFrame {
     public VentanaClientes(Clientes cliente) {
         initComponents();
         this.clienteLogueado = cliente;
+
     }
-    
-    public VentanaClientes() {
-        initComponents();
+
+    VentanaClientes() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -157,14 +155,14 @@ public class VentanaClientes extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBuscarEventoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarEventoActionPerformed
-        BuscarEventos buscar = new BuscarEventos();
-        buscar.setVisible(true);
+        BuscarEventos buscar = new BuscarEventos(clienteLogueado);
         buscar.setLocationRelativeTo(null);
+        buscar.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnBuscarEventoActionPerformed
 
     private void btnConsultarReservasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarReservasActionPerformed
-        ConsultaReservasClientes consultaReservasClientes = new ConsultaReservasClientes();
+        ConsultaReservasClientes consultaReservasClientes = new ConsultaReservasClientes(clienteLogueado); // ✅
         consultaReservasClientes.setVisible(true);
         consultaReservasClientes.setLocationRelativeTo(null);
         this.dispose();

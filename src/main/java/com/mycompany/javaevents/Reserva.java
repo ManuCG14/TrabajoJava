@@ -32,6 +32,10 @@ public class Reserva implements Serializable {
         }
     }
 
+    public Reserva(Clientes clienteActual, Eventos eventoSeleccionado) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
     // Getters
     public Clientes getCliente() {
         return cliente;

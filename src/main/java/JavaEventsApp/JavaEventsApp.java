@@ -20,6 +20,7 @@ public class JavaEventsApp {
     Datos.usuarios = GestorFicheros.cargarDatos("usuarios.dat");
     Datos.reservas = GestorFicheros.cargarDatos("reservas.dat");
 
+
     // Crear cliente de prueba si no hay clientes
     if (Datos.usuarios == null || Datos.usuarios.isEmpty()) {
         Datos.usuarios = new java.util.ArrayList<>();

@@ -1,44 +1,39 @@
 package com.mycompany.javaevents;
 
+import static JavaEventsApp.JavaEventsApp.clienteLogueado;
 import static com.mycompany.javaevents.Datos.usuarios;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
+import javax.swing.table.DefaultTableModel;
 
 public class MetodosClientes {
 
     private static List<Clientes> clientes = new ArrayList<>();
     private static List<Reserva> reservas = new ArrayList<>();
 
-    private static final String ARCHIVO_CLIENTES = "clientes.dat";
+   private static final String ARCHIVO_RESERVAS = "reservas.dat";
 
-    // Cargar clientes desde archivo al iniciar la app
-    public static void cargarClientes() {
-        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(ARCHIVO_CLIENTES))) {
-            clientes = (List<Clientes>) ois.readObject();
-            System.out.println("Clientes cargados: " + clientes.size());
-
-            // Sincronizar lista global
-            Datos.usuarios.clear();
-            Datos.usuarios.addAll(clientes);
-        } catch (IOException | ClassNotFoundException e) {
-            clientes = new ArrayList<>();
-            Datos.usuarios.clear();
-            System.out.println("No se pudo cargar clientes. Se inicia lista vacía.");
-        }
+    public static void guardarReservas() {
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(ARCHIVO_RESERVAS))) {
+            oos.writeObject(reservas);
+            System.out.println("Reservas guardadas correctamente.");
+    } catch (IOException e) {
+        System.err.println("Error guardando reservas: " + e.getMessage());
     }
+}
 
-    // Guardar clientes al cerrar la app
-    public static void guardarClientes() {
-        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(ARCHIVO_CLIENTES))) {
-            oos.writeObject(clientes);
-            System.out.println("Clientes guardados correctamente.");
-        } catch (IOException e) {
-            System.err.println("Error guardando clientes: " + e.getMessage());
-        }
+    public static void cargarReservas() {
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(ARCHIVO_RESERVAS))) {
+            reservas = (List<Reserva>) ois.readObject();
+            System.out.println("Reservas cargadas: " + reservas.size());
+    }   catch (IOException | ClassNotFoundException e) {
+            reservas = new ArrayList<>();
+            System.out.println("No se pudo cargar reservas. Se inicia lista vacía.");
     }
+}
 
     // Registro de clientes
     public static boolean registrarCliente(Clientes cliente) {
@@ -98,9 +93,9 @@ public class MetodosClientes {
     // Obtener reservas por cliente
     public static List<Reserva> obtenerReservasDeCliente(Clientes cliente) {
         return reservas.stream()
-                .filter(r -> r.getCliente().equals(cliente))
-                .collect(Collectors.toList());
-    }
+            .filter(r -> r.getCliente().getCorreo().equalsIgnoreCase(cliente.getCorreo()))
+            .collect(Collectors.toList());
+}
 
     // Modificar datos del cliente
     public static boolean modificarDatosCliente(String correo, String nuevaClave, String nuevoNombre) {
@@ -123,7 +118,6 @@ public class MetodosClientes {
     public static void añadirReserva(Reserva reserva) {
         reservas.add(reserva);
     }
-
     // Borrar cliente por correo (opcional extra)
     public static boolean borrarCliente(String correo) {
         boolean borrado = clientes.removeIf(c -> c.getCorreo().equalsIgnoreCase(correo));
@@ -132,5 +126,11 @@ public class MetodosClientes {
         }
         return borrado;
     }
+
+    public static List<Reserva> getReservas() {
+    return reservas;
 }
+}
+
+
 

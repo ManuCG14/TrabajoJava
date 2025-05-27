@@ -385,7 +385,7 @@ public class ModificarDatosPersonales extends javax.swing.JFrame {
     }//GEN-LAST:event_txtFechaCaducidadActionPerformed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
-        VentanaClientes ventC = new VentanaClientes();
+        VentanaClientes ventC = new VentanaClientes(clienteActual);
         ventC.setVisible(true);
         ventC.setLocationRelativeTo(null);
         this.dispose();
