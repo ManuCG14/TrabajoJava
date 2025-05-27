@@ -1,6 +1,8 @@
 package JavaEventsApp;
 
 import com.mycompany.javaevents.*;
+import static com.mycompany.javaevents.Datos.eventos;
+import static com.mycompany.javaevents.Datos.reservas;
 import interfaz.Principal;
 
 import java.awt.event.WindowAdapter;
@@ -10,60 +12,40 @@ import java.util.List;
 public class JavaEventsApp {
 
     public static Clientes clienteLogueado = null;
-    private static List<Eventos> eventos = new java.util.ArrayList<>();
-    private static List<Reserva> reservas = new java.util.ArrayList<>();
 
-    private static final String EVENTOS_FILE = "eventos.dat";
-    private static final String RESERVAS_FILE = "reservas.dat";
 
     public static void main(String[] args) {
-        // Cargar eventos y reservas
-        cargarDatos();
+        // Cargar datos
+    Datos.eventos = GestorFicheros.cargarDatos("eventos.dat");
+    Datos.usuarios = GestorFicheros.cargarDatos("usuarios.dat");
+    Datos.reservas = GestorFicheros.cargarDatos("reservas.dat");
 
-        // Cargar clientes desde archivo usando la clase MetodosClientes
-        MetodosClientes.cargarClientes();
-
-        // Si no hay clientes cargados, crear un cliente de prueba automáticamente
-        if (MetodosClientes.getClientes().isEmpty()) {
-            Clientes clientePrueba = new Clientes("cliente@correo.com", "1234", "Cliente Prueba");
-            MetodosClientes.registrarCliente(clientePrueba);
-            MetodosClientes.guardarClientes();
-            System.out.println("Cliente de prueba registrado automáticamente: cliente@correo.com / 1234");
-        }
-
-        // Mostrar la interfaz gráfica principal
-        Principal princ = new Principal();
-        princ.setVisible(true);
-        princ.setLocationRelativeTo(null);
-
-        System.out.println("\nBienvenido a JavaEvents");
-        System.out.println("Cargados: " + MetodosClientes.getClientes().size() + " clientes, " + eventos.size() + " eventos y " + reservas.size() + " reservas.");
-
-        // Añadir listener para guardar datos al cerrar la ventana principal
-        princ.addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowClosing(WindowEvent windowEvent) {
-                guardarDatos();
-                MetodosClientes.guardarClientes();
-                System.out.println("Datos guardados correctamente.");
-                System.exit(0);
-            }
-        });
+    // Crear cliente de prueba si no hay clientes
+    if (Datos.usuarios == null || Datos.usuarios.isEmpty()) {
+        Datos.usuarios = new java.util.ArrayList<>();
+        Clientes clientePrueba = new Clientes("cliente@correo.com", "1234", "Cliente Prueba");
+        Datos.usuarios.add(clientePrueba);
+        System.out.println("Cliente de prueba registrado automáticamente: cliente@correo.com / 1234");
     }
+
+    // Guardar al cerrar
+    Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+        GestorFicheros.guardarDatos(Datos.eventos, "eventos.dat");
+        GestorFicheros.guardarDatos(Datos.reservas, "reservas.dat");
+        GestorFicheros.guardarDatos(Datos.usuarios, "usuarios.dat");
+        System.out.println("Datos guardados correctamente.");
+    }));
+
+    // Mostrar ventana principal
+    Principal princ = new Principal();
+    princ.setVisible(true);
+    princ.setLocationRelativeTo(null);
+
+    System.out.println("\nBienvenido a JavaEvents");
+    System.out.println("Cargados: " + Datos.usuarios.size() + " usuarios, " + Datos.eventos.size() + " eventos y " + Datos.reservas.size() + " reservas.");
+}
 
     @SuppressWarnings("unchecked")
-    private static void cargarDatos() {
-        Object e = Datos.cargar(EVENTOS_FILE);
-        Object r = Datos.cargar(RESERVAS_FILE);
-
-        if (e != null) eventos = (List<Eventos>) e;
-        if (r != null) reservas = (List<Reserva>) r;
-    }
-
-    private static void guardarDatos() {
-        Datos.guardar(EVENTOS_FILE, eventos);
-        Datos.guardar(RESERVAS_FILE, reservas);
-    }
 
     public static List<Eventos> getEventos() {
         return eventos;

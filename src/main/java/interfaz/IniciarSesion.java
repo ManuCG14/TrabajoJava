@@ -8,6 +8,7 @@ import JavaEventsApp.JavaEventsApp;
 import com.mycompany.javaevents.Administrador;
 import com.mycompany.javaevents.Clientes;
 import com.mycompany.javaevents.MetodosClientes;
+import com.mycompany.javaevents.Usuarios;
 
 /**
  *
@@ -152,11 +153,11 @@ public class IniciarSesion extends javax.swing.JFrame {
     }
 
     // Intentar login cliente
-    Clientes cliente = MetodosClientes.login(correo, clave);
+    Usuarios usuario = MetodosClientes.iniciarSesion(correo, clave);
 
-    if (cliente != null) {
-        JavaEventsApp.clienteLogueado = cliente; // ✅ Solo si el login fue exitoso
-        javax.swing.JOptionPane.showMessageDialog(this, "Bienvenido " + cliente.getNombre());
+    if (usuario != null) {
+        JavaEventsApp.clienteLogueado = (Clientes) usuario; // ✅ Solo si el login fue exitoso
+        javax.swing.JOptionPane.showMessageDialog(this, "Bienvenido " + usuario.getNombre());
         VentanaClientes ventanaClientes = new VentanaClientes();
         ventanaClientes.setVisible(true);
         ventanaClientes.setLocationRelativeTo(null);

@@ -55,12 +55,14 @@ public class MetodosClientes {
     }
 
     // Login
-    public static Clientes login(String correo, String clave) {
-        return clientes.stream()
-                .filter(c -> c.getCorreo().equalsIgnoreCase(correo) && c.getClave().equals(clave))
-                .findFirst()
-                .orElse(null);
+    public static Usuarios iniciarSesion(String correo, String clave) {
+        for (Usuarios u : Datos.usuarios) {
+            if (u.getCorreo().equals(correo) && u.getClave().equals(clave)) {
+                return u;
+        }
     }
+    return null; // Usuario no encontrado
+}
 
     // Búsqueda de eventos por tipo
     public static List<Eventos> buscarPorTipo(List<Eventos> eventos, TipoEvento tipo) {
