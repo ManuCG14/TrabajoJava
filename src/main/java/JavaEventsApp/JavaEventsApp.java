@@ -7,6 +7,7 @@ import interfaz.Principal;
 
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.ArrayList;
 import java.util.List;
 
 public class JavaEventsApp {
@@ -19,6 +20,7 @@ public class JavaEventsApp {
     Datos.eventos = GestorFicheros.cargarDatos("eventos.dat");
     Datos.usuarios = GestorFicheros.cargarDatos("usuarios.dat");
     Datos.reservas = GestorFicheros.cargarDatos("reservas.dat");
+    if (Datos.reservas == null) Datos.reservas = new ArrayList<>();
 
 
     // Crear cliente de prueba si no hay clientes

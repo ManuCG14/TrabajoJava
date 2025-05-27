@@ -12,13 +12,12 @@ import javax.swing.table.DefaultTableModel;
 public class MetodosClientes {
 
     private static List<Clientes> clientes = new ArrayList<>();
-    private static List<Reserva> reservas = new ArrayList<>();
 
    private static final String ARCHIVO_RESERVAS = "reservas.dat";
 
     public static void guardarReservas() {
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(ARCHIVO_RESERVAS))) {
-            oos.writeObject(reservas);
+            oos.writeObject(Datos.reservas);
             System.out.println("Reservas guardadas correctamente.");
     } catch (IOException e) {
         System.err.println("Error guardando reservas: " + e.getMessage());
@@ -27,10 +26,10 @@ public class MetodosClientes {
 
     public static void cargarReservas() {
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(ARCHIVO_RESERVAS))) {
-            reservas = (List<Reserva>) ois.readObject();
-            System.out.println("Reservas cargadas: " + reservas.size());
+            Datos.reservas = (List<Reserva>) ois.readObject();
+            System.out.println("Reservas cargadas: " + Datos.reservas.size());
     }   catch (IOException | ClassNotFoundException e) {
-            reservas = new ArrayList<>();
+            Datos.reservas = new ArrayList<>();
             System.out.println("No se pudo cargar reservas. Se inicia lista vacía.");
     }
 }
@@ -92,7 +91,7 @@ public class MetodosClientes {
 
     // Obtener reservas por cliente
     public static List<Reserva> obtenerReservasDeCliente(Clientes cliente) {
-        return reservas.stream()
+        return Datos.reservas.stream()
             .filter(r -> r.getCliente().getCorreo().equalsIgnoreCase(cliente.getCorreo()))
             .collect(Collectors.toList());
 }
@@ -116,8 +115,8 @@ public class MetodosClientes {
 
     // Añadir reserva
     public static void añadirReserva(Reserva reserva) {
-        reservas.add(reserva);
-    }
+    Datos.reservas.add(reserva);
+}
     // Borrar cliente por correo (opcional extra)
     public static boolean borrarCliente(String correo) {
         boolean borrado = clientes.removeIf(c -> c.getCorreo().equalsIgnoreCase(correo));
@@ -128,7 +127,7 @@ public class MetodosClientes {
     }
 
     public static List<Reserva> getReservas() {
-    return reservas;
+    return Datos.reservas;
 }
 }
 
