@@ -1,5 +1,6 @@
 package com.mycompany.javaevents;
 
+import static com.mycompany.javaevents.Datos.usuarios;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -103,10 +104,10 @@ public class MetodosClientes {
 
     // Modificar datos del cliente
     public static boolean modificarDatosCliente(String correo, String nuevaClave, String nuevoNombre) {
-        for (Clientes c : clientes) {
-            if (c.getCorreo().equalsIgnoreCase(correo)) {
-                c.setClave(nuevaClave);
-                c.setNombre(nuevoNombre);
+        for (Usuarios u : usuarios) {
+            if (u.getCorreo().equalsIgnoreCase(correo)) {
+                u.setClave(nuevaClave);
+                u.setNombre(nuevoNombre);
                 return true;
             }
         }

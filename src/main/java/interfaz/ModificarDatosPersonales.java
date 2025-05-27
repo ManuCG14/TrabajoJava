@@ -3,17 +3,14 @@ package interfaz;
 import com.mycompany.javaevents.Clientes;
 import com.mycompany.javaevents.Direccion;
 import com.mycompany.javaevents.TarjetaCredito;
+import com.mycompany.javaevents.Usuarios;
 import javax.swing.JOptionPane;
 
 public class ModificarDatosPersonales extends javax.swing.JFrame {
 
     private Clientes clienteActual;
+    private Clientes cliente;
 
-    public ModificarDatosPersonales(Clientes cliente) {
-        initComponents();
-        this.clienteActual = cliente;
-        cargarDatosCliente();
-    }
 
     private void cargarDatosCliente() {
         if (clienteActual != null) {
@@ -334,35 +331,20 @@ public class ModificarDatosPersonales extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
     private void btnModificarDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarDatosActionPerformed
-        // Actualizar datos del cliente con los valores de los campos de texto
-        clienteActual.setNombre(txtNombre.getText());
-        clienteActual.setCorreo(txtCorreo.getText());
-        clienteActual.setClave(txtContraseña.getText());
-
-        // Actualizar dirección
-        Direccion dir = clienteActual.getDireccion();
-        if (dir == null) {
-            dir = new Direccion();
-            clienteActual.setDireccion(dir);
-        }
-        dir.setCalle(txtCalle.getText());
-        dir.setCiudad(txtCiudad.getText());
-        dir.setCodigoPostal(txtCodigoPostal.getText());
-
-        // Actualizar tarjeta de crédito
-        TarjetaCredito tarjeta = clienteActual.getTarjeta();
-        if (tarjeta == null) {
-            tarjeta = new TarjetaCredito();
-            clienteActual.setTarjeta(tarjeta);
-        }
-        tarjeta.setTitular(txtTitular.getText());
-        tarjeta.setNumero(txtNumero.getText());
-        tarjeta.setFechaCaducidad(txtFechaCaducidad.getText());
-
-        JOptionPane.showMessageDialog(this, "Datos modificados correctamente.");
         guardarCambios();
     }//GEN-LAST:event_btnModificarDatosActionPerformed
 
+    public ModificarDatosPersonales(Usuarios usuario) {
+        initComponents();
+        if (usuario instanceof Clientes) {
+            this.clienteActual = (Clientes) usuario;
+        cargarDatosCliente();
+    } else {
+        JOptionPane.showMessageDialog(this, "Error: el usuario no es un cliente.");
+        dispose(); // Cierra la ventana si no es cliente válido
+        }
+}
+    
     private void txtCodigoPostalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodigoPostalActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCodigoPostalActionPerformed

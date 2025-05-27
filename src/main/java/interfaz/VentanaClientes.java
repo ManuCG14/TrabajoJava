@@ -4,6 +4,7 @@
  */
 package interfaz;
 
+import JavaEventsApp.JavaEventsApp;
 import com.mycompany.javaevents.Clientes;
 import javax.swing.JOptionPane;
 
@@ -170,14 +171,14 @@ public class VentanaClientes extends javax.swing.JFrame {
     }//GEN-LAST:event_btnConsultarReservasActionPerformed
 
     private void btnModificarDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarDatosActionPerformed
-        if(clienteLogueado != null) {
-            ModificarDatosPersonales datospersonales = new ModificarDatosPersonales(clienteLogueado);
+        if (JavaEventsApp.clienteLogueado != null) {
+            ModificarDatosPersonales datospersonales = new ModificarDatosPersonales(JavaEventsApp.clienteLogueado);
             datospersonales.setVisible(true);
             datospersonales.setLocationRelativeTo(null);
             this.dispose();
-        } else {
-            JOptionPane.showMessageDialog(this, "No hay cliente logueado");
-        }
+    } else {
+    JOptionPane.showMessageDialog(this, "No hay cliente logueado");
+}
     }//GEN-LAST:event_btnModificarDatosActionPerformed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed

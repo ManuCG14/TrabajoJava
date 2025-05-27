@@ -11,7 +11,7 @@ import java.util.List;
 
 public class JavaEventsApp {
 
-    public static Clientes clienteLogueado = null;
+    public static Clientes clienteLogueado ;
 
 
     public static void main(String[] args) {
