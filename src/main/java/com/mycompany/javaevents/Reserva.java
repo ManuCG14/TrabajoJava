@@ -33,10 +33,6 @@ public class Reserva implements Serializable {
         }
     }
 
-    public Reserva(Clientes clienteActual, Eventos eventoSeleccionado) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
     // Getters
     public Clientes getCliente() {
         return cliente;
@@ -60,29 +56,6 @@ public class Reserva implements Serializable {
 
     public double getTotal() {
         return total;
-    }
-
-    // Generar factura
-    public String generarFactura() {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
-
-        StringBuilder factura = new StringBuilder();
-        factura.append("FACTURA DE RESERVAn");
-        factura.append("Fecha de Reserva: ").append(fechaReserva.format(formatter)).append("\n");
-        factura.append("Cliente: ").append(cliente.getNombre()).append("\n");
-        factura.append("Correo: ").append(cliente.getCorreo()).append("\n");
-        factura.append("VIP: ").append(cliente.isVIP() ? "Sí (10% de descuento)" : "No").append("\n\n");
-
-        factura.append("EVENTO:\n");
-        factura.append("Título: ").append(evento.getTitulo()).append("\n");
-        factura.append("Tipo: ").append(evento.getTipo()).append("\n");
-        factura.append("Fecha del Evento: ").append(fechaEvento.format(formatter)).append("\n");
-        factura.append("Precio por entrada: ").append(String.format("%.2f €", evento.getPrecio())).append("\n");
-        factura.append("Entradas compradas: ").append(cantidadEntradas).append("\n");
-        factura.append("Total pagado: ").append(String.format("%.2f €", total)).append("\n");
-        factura.append("==============================\n");
-
-        return factura.toString();
     }
 
     @Override

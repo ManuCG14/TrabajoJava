@@ -1,5 +1,6 @@
 package com.mycompany.javaevents;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -23,12 +24,7 @@ public class MetodosAdministrador {
                 .collect(Collectors.toList());
     }
 
-    // Imprime las reservas ordenadas por fecha de reserva (de más recientes a más antiguas)
-    public static void imprimirReservasOrdenadas() {
-        Datos.reservas.stream()
-                .sorted((r1, r2) -> r2.getFechaReserva().compareTo(r1.getFechaReserva()))
-                .forEach(r -> System.out.println(r.generarFactura()));
-    }
+   
 
     // Devuelve la lista completa de eventos
     public static List<Eventos> listarEventos() {
@@ -44,6 +40,12 @@ public class MetodosAdministrador {
     public static List<Usuarios> listarUsuarios() {
         return Datos.usuarios;
     }
-
+    public static void agregarReserva(Reserva r) {
+    Datos.reservas.add(r);
+}
+    // Método para devolver todas las reservas del sistema
+    public static List<Reserva> mostrarReservas() {
+        return new ArrayList<>(Datos.reservas); // Retornar una copia para evitar modificaciones directas
+    }
 
 }

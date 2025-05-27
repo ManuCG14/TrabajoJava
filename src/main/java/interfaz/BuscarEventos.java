@@ -37,7 +37,7 @@ public class BuscarEventos extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         btnBuscar.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        btnBuscar.setText("Buscar");
+        btnBuscar.setText("Buscar por titulo");
         btnBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBuscarActionPerformed(evt);
@@ -70,8 +70,8 @@ public class BuscarEventos extends javax.swing.JFrame {
                     .addComponent(btnBuscar)
                     .addComponent(txtBuscarEvento, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnMostrarTodos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnReservarEventos, javax.swing.GroupLayout.DEFAULT_SIZE, 139, Short.MAX_VALUE))
-                .addContainerGap(33, Short.MAX_VALUE))
+                    .addComponent(btnReservarEventos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -208,7 +208,7 @@ public class BuscarEventos extends javax.swing.JFrame {
     // Crear la reserva con los datos correctos
     Reserva reserva = new Reserva(clienteActual, eventoSeleccionado, fechaEvento, cantidadEntradas);
     MetodosClientes.añadirReserva(reserva);
-
+    
     JOptionPane.showMessageDialog(this, "¡Evento reservado correctamente!");
 
     }//GEN-LAST:event_btnReservarEventosActionPerformed
